@@ -1,23 +1,19 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const screen = document.getElementById('calculator-screen');
-    const keys = document.querySelector('.calculator-keys');
+const display=document.getElementById("display");
 
-    keys.addEventListener('click', function(event) {
-        const target = event.target;
-        const value = target.value;
+function appendToDisplay(input){
+    display.value +=input;
+}
 
-        if (!target.matches('button')) return;
+function clearDisplay(){
+    display.value='';
+}
 
-        if (target.id === 'clear') {
-            screen.value = '';
-        } else if (value === '=') {
-            try {
-                screen.value = eval(screen.value) || '';
-            } catch {
-                screen.value = 'Error';
-            }
-        } else {
-            screen.value += value;
-        }
-    });
-});
+function calculate(){
+    try{
+        display.value=eval(display.value);
+    }
+    catch(error){
+        display.value="Error";
+    }
+}
+
